@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gerador de QR Code</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-orbs" aria-hidden="true">
+    <span class="orb orb-1"></span>
+    <span class="orb orb-2"></span>
+    <span class="orb orb-3"></span>
+  </div>
+
+  <button id="lang-toggle" class="lang-toggle" type="button" aria-label="Switch language">
+    <span class="lang-option" data-lang="pt">PT</span>
+    <span class="lang-divider">/</span>
+    <span class="lang-option" data-lang="en">EN</span>
+  </button>
+
+  <main class="container">
+    <header class="app-header">
+      <div class="logo-badge">📱</div>
+      <h1 data-i18n="title">Gerador de QR Code</h1>
+      <p class="subtitle" data-i18n="subtitle">Crie QR Codes elegantes para texto, URL ou WiFi em segundos</p>
+    </header>
+
+    <section class="card">
+      <div class="tabs" role="tablist">
+        <button class="tab-btn active" data-type="text" role="tab" aria-selected="true">
+          <span class="tab-icon">📝</span>
+          <span data-i18n="tabText">Texto</span>
+        </button>
+        <button class="tab-btn" data-type="url" role="tab" aria-selected="false">
+          <span class="tab-icon">🔗</span>
+          <span data-i18n="tabUrl">URL</span>
+        </button>
+        <button class="tab-btn" data-type="wifi" role="tab" aria-selected="false">
+          <span class="tab-icon">📶</span>
+          <span data-i18n="tabWifi">WiFi</span>
+        </button>
+        <span class="tab-indicator"></span>
+      </div>
+
+      <form id="qr-form">
+        <div class="field-group" data-panel="text">
+          <label for="text-input" data-i18n="labelText">Texto</label>
+          <textarea id="text-input" data-i18n-placeholder="placeholderText" placeholder="Digite o texto..." rows="3"></textarea>
+        </div>
+
+        <div class="field-group hidden" data-panel="url">
+          <label for="url-input" data-i18n="labelUrl">URL</label>
+          <input type="url" id="url-input" data-i18n-placeholder="placeholderUrl" placeholder="https://exemplo.com" />
+        </div>
+
+        <div class="field-group hidden" data-panel="wifi">
+          <label for="wifi-ssid" data-i18n="labelSsid">Nome da rede (SSID)</label>
+          <input type="text" id="wifi-ssid" data-i18n-placeholder="placeholderSsid" placeholder="Minha rede WiFi" />
+
+          <label for="wifi-password" data-i18n="labelPassword">Senha</label>
+          <input type="text" id="wifi-password" data-i18n-placeholder="placeholderPassword" placeholder="Senha da rede" />
+
+          <label for="wifi-encryption" data-i18n="labelEncryption">Criptografia</label>
+          <select id="wifi-encryption">
+            <option value="WPA" data-i18n="optWpa">WPA/WPA2</option>
+            <option value="WEP" data-i18n="optWep">WEP</option>
+            <option value="nopass" data-i18n="optNopass">Sem senha</option>
+          </select>
+        </div>
+
+        <div class="options-grid">
+          <div class="option">
+            <label for="fg-color" data-i18n="labelColor">Cor do QR Code</label>
+            <input type="color" id="fg-color" value="#4f46e5" />
+          </div>
+          <div class="option">
+            <label for="bg-color" data-i18n="labelBgColor">Cor de fundo</label>
+            <input type="color" id="bg-color" value="#ffffff" />
+          </div>
+          <div class="option option-wide">
+            <label for="size-range">
+              <span data-i18n="labelSize">Tamanho</span>: <span id="size-value">300</span><span data-i18n="sizePx">px</span>
+            </label>
+            <input type="range" id="size-range" min="120" max="600" step="10" value="300" />
+          </div>
+        </div>
+
+        <button type="submit" class="btn primary">
+          <span data-i18n="btnGenerate">Gerar QR Code</span>
+          <span class="btn-shine"></span>
+        </button>
+      </form>
+    </section>
+
+    <section class="card result-card" id="result-card" hidden>
+      <div id="qrcode" class="qrcode-box"></div>
+      <button id="download-btn" class="btn secondary">
+        <span class="download-icon">⬇️</span>
+        <span data-i18n="btnDownload">Baixar PNG</span>
+      </button>
+    </section>
+
+    <footer class="app-footer">
+      <p>
+        <span data-i18n="footerDeveloped">Desenvolvido por</span>
+        <strong>David Arsénio Martins</strong>
+      </p>
+      <div class="footer-links">
+        <a href="https://ividi.dev/" target="_blank" rel="noopener noreferrer">🌐 ividi.dev</a>
+        <span class="footer-dot">·</span>
+        <a href="https://github.com/VidiPT89/" target="_blank" rel="noopener noreferrer">💻 github.com/VidiPT89</a>
+      </div>
+    </footer>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
